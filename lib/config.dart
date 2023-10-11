@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 enum ColorMode {
@@ -19,8 +17,7 @@ abstract class Config {
   Config({this.colorMode});
 
   static void throwNullError(String colorModeStr, String configStr) {
-    throw FlutterError(
-        'When using `ColorMode.$colorModeStr`, `$configStr` must be set.');
+    throw FlutterError('When using `ColorMode.$colorModeStr`, `$configStr` must be set.');
   }
 }
 
@@ -48,10 +45,8 @@ class CustomConfig extends Config {
           return true;
         }()),
         assert(() {
-          if (gradients == null &&
-              (gradientBegin != null || gradientEnd != null)) {
-            throw FlutterError(
-                'You set a gradient direction but forgot setting `gradients`.');
+          if (gradients == null && (gradientBegin != null || gradientEnd != null)) {
+            throw FlutterError('You set a gradient direction but forgot setting `gradients`.');
           }
           return true;
         }()),
@@ -68,19 +63,15 @@ class CustomConfig extends Config {
           return true;
         }()),
         assert(() {
-          if (colors != null &&
-              durations != null &&
-              heightPercentages != null) {
-            if (colors.length != durations.length ||
-                colors.length != heightPercentages.length) {
+          if (colors != null && durations != null && heightPercentages != null) {
+            if (colors.length != durations.length || colors.length != heightPercentages.length) {
               throw FlutterError(
                   'Length of `colors`, `durations` and `heightPercentages` must be equal.');
             }
           }
           return true;
         }()),
-        assert(colors == null || gradients == null,
-            'Cannot provide both colors and gradients.'),
+        assert(colors == null || gradients == null, 'Cannot provide both colors and gradients.'),
         super(colorMode: ColorMode.custom);
 }
 
