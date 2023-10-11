@@ -336,6 +336,19 @@ class _WaveWidgetState extends State<WaveWidget> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  /// [didUpdateWidget] is called whenever the widget configuration changes
+  ///
+  /// When configuration changes, it will dispose and initialize animation.
+  /// For more details, please see: https://api.flutter.dev/flutter/widgets/State/didUpdateWidget.html
+  @override
+  void didUpdateWidget(covariant WaveWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.config != widget.config) {
+      _disposeAnimations();
+      _initAnimations();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
